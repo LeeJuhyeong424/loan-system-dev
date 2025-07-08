@@ -9,14 +9,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('role')->default('user')->after('email'); // 또는 after('password')
+            $table->string('login_id')->unique()->after('name'); // 사용자 ID
+            $table->string('role')->default('user')->after('email'); // 권한 (admin/user)
         });
     }
 
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role');
+            $table->dropColumn(['login_id', 'role']);
         });
     }
 };

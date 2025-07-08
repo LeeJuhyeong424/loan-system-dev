@@ -13,6 +13,7 @@ class TestUserSeeder extends Seeder
         // 관리자 계정
         User::create([
             'name' => '관리자',
+            'login_id' => 'admin',  // ✅ 추가됨
             'email' => 'admin@example.com',
             'password' => Hash::make('1234'),
             'role' => 'admin',
@@ -22,6 +23,7 @@ class TestUserSeeder extends Seeder
         for ($i = 1; $i <= 5; $i++) {
             User::create([
                 'name' => "사용자{$i}",
+                'login_id' => "user{$i}",  // ✅ 추가됨
                 'email' => "user{$i}@example.com",
                 'password' => Hash::make('1234'),
                 'role' => 'user',

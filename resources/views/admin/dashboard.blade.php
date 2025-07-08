@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            채권자 {{ __('Dashboard') }}
+            채무자 {{ __('Dashboard') }}
         </h2>
     </x-slot>
 

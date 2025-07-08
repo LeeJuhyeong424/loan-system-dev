@@ -7,8 +7,8 @@
 
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-input-label for="email" value="아이디 또는 이메일" />
+            <x-text-input id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="아이디 또는 이메일을 입력하세요" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -19,7 +19,7 @@
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
-                            required autocomplete="current-password" />
+                            required autocomplete="current-password" placeholder="비밀번호를 입력하세요" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
