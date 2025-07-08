@@ -6,7 +6,11 @@ use App\Http\Controllers\User\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    if (!auth()->check()) {
+        return redirect()->route('login'); // 로그인 안 했으면 로그인 페이지로
+    }
+
+    return redirect()->route('dashboard'); // 로그인 되어 있으면 /dashboard 진입 → 역할별 분기 처리됨
 });
 
 Route::get('/dashboard', function () {
