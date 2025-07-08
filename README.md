@@ -72,25 +72,29 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ```bash
 git clone https://github.com/your-username/loan-system-dev.git
 cd loan-system-dev
+```
 
 ### ✅ 2. 의존성 설치
 
 ```bash
 composer install
+```
 
 ### ✅ 3. .env 생성 및 앱 키 발급
 
 ```bash
 cp .env.init .env
 php artisan key:generate
+```
 
 ### ✅ 4. 데이터베이스 설정
 
 ```sql
 CREATE DATABASE loan-system-dev CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
 
 ### ✅ 5. 마이그레이션 및 시더 실행
 
 ```bash
 php artisan migrate:fresh --seed
-
+```
