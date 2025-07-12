@@ -20,6 +20,10 @@
                         <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
                             사용자 관리
                         </x-nav-link>
+
+                        <x-nav-link :href="route('admin.loans.index')" :active="request()->routeIs('admin.loans.index')">
+                            대출 관리
+                        </x-nav-link>
                     @endif
                 </div>
             </div>
@@ -80,6 +84,10 @@
             @if(auth()->check() && auth()->user()->role === 'admin')
                 <x-responsive-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
                     사용자 관리
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('admin.loans.index')" :active="request()->routeIs('admin.loans.index')">
+                    대출 관리
                 </x-responsive-nav-link>
             @endif
         </div>

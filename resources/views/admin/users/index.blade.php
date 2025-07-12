@@ -40,5 +40,65 @@
         </div>
         {{ session('success') }}
     </x-slot>
-    
+    <form method="GET" action="{{ route('admin.users.index') }}" class="flex flex-wrap items-end gap-4 mb-4 max-w-screen-xl mx-auto px-4">
+
+        <!-- 이름 또는 이메일 -->
+        <input type="text" name="keyword"
+                value="{{ request('keyword') }}"
+                placeholder="이름 또는 이메일 검색"
+                class="border px-4 py-2 rounded w-full sm:w-1/3">
+
+        <!-- 권한 선택 -->
+        <select name="role" class="border px-4 py-2 rounded w-full sm:w-1/5">
+            <option value="">전체 권한</option>
+            <option value="admin" {{ request('role') === 'admin' ? 'selected' : '' }}>Admin</option>
+            <option value="user" {{ request('role') === 'user' ? 'selected' : '' }}>User</option>
+        </select>
+
+        <!-- 버튼 그룹 -->
+        <div class="flex gap-2">
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+            🔍 검색
+            </button>
+            <a href="{{ route('admin.users.index') }}" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300">
+            🔄 초기화
+            </a>
+        </div>
+    </form>
+
+    <!-- 사용자 목록 테이블 -->
+    <div class="overflow-x-auto bg-white rounded shadow border mt-4">
+        <table class="min-w-full text-sm text-left">
+            <thead class="bg-gray-100 text-gray-700 font-semibold">
+            <tr>
+                <th class="px-4 py-2">이름</th>
+                <th class="px-4 py-2">이메일</th>
+                <th class="px-4 py-2">역할</th>
+                <th class="px-4 py-2">가입일</th>
+                <th class="px-4 py-2 text-center">동작</th>
+            </tr>
+            </thead>
+            <tbody class="divide-y">
+            @forelse ($users as $user)
+                <tr>
+                <td class="px-4 py-2">{{ $user->name }}</td>
+                <td class="px-4 py-2">{{ $user->email }}</td>
+                <td class="px-4 py-2">{{ $user->role }}</td>
+                <td class="px-4 py-2">{{ $user->created_at->format('Y-m-d') }}</td>
+                <td class="px-4 py-2 text-center text-sm text-gray-500 space-x-2">
+                    <span class="text-blue-500">상세</span>
+                    <span class="text-yellow-500">수정</span>
+                    <span class="text-red-500">삭제</span>
+                    <span class="text-rose-500">🔔 알림</span>
+                </td>
+                </tr>
+            @empty
+                <tr>
+                <td colspan="5" class="text-center py-4 text-gray-500">사용자가 없습니다.</td>
+                </tr>
+            @endforelse
+            </tbody>
+        </table>
+    </div>
+
 </x-app-layout>
